@@ -42,7 +42,31 @@ $(document).ready(function() {
             .fail(function(xhr, e) {
                 console.log(e);
             });                     
-        });         
+        
+
+$('#bookmark').on("click", function() {
+    console.log("CLICK!!!");
+    var dataObj = {
+        url: 'http://hotmail.com',
+        description: 'test test test',
+        replace: 'yes', 
+        api_key: API_KEY,
+    };
+
+    $.ajax({
+        url: 'https://api.delicious.com/v1/posts/add?',
+        data: dataObj,
+        //dataType: 'jsonp',
+    })
+    .done(function(){
+        console.log("success");
+    })
+    .fail(function(){
+        console.log("fail");
+    })
+});
+
+});  // end of document.ready functions         
 
         //this function is not used yet 
         function buildLink(farm, server, id, secret) {
