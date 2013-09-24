@@ -1,0 +1,60 @@
+/* --------------------------------------- GENERAL STYLES --------------------------------------- */
+
+body {
+    background:#eee;
+    color:#222;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    size:14px;
+}
+
+
+header {
+    background:#222;
+    color:#fff;
+    padding:10px;
+    position:relative;
+}
+
+a {
+    color:#1FA1FA;
+}
+
+/*------------------------------------- LAYOUT -------------------------------------------------*/
+#wrapper {
+    width:1000px;
+    margin:0 auto;
+    background:#fff;
+}
+
+#gallery {
+   padding:20px;
+   text-align:center;
+   min-height:500px;
+}
+
+#signin {
+    position:absolute;
+    top:40px;
+    right:20px;
+}
+
+#signin label {
+    font-weight:bold;
+    margin-right:5px;
+}
+/*------------------------------------- IMAGE GRID -------------------------------------------------*/
+
+.image-wrapper {    
+    float:left;
+    margin:10px 10px 0px 0px;
+    border: 1px solid #ddd;
+}
+
+.image-wrapper img {
+    height:200px;
+}
+
+.caption {  
+    font-style:italic;
+    width:200px;
+}
