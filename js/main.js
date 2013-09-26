@@ -1,99 +1,123 @@
-  
-var API_KEY = 'dj0yJmk9RkxOQUtxdk9uQXFNJmQ9WVdrOWVETjZNMVIzTjJjbWNHbzlPVFkxTXpVMU5UWXkmcz1jb25zdW1lcnNlY3JldCZ4PTdk';
-
 $(document).ready(function() {
-            /*var dataObj = {
-                api_key : API_KEY,
-                method : 'flickr.photos.search',
-                tags: 'shiba inu',  //what do you want to search for?
-                sort: 'relevance',
-                media: 'photos',
-                format: 'json',
-                content_type: 1,
-                nojsoncallback: 1
-            };*/
 
-            var dataObj = {
-                // set the query string parameters here
-                count: 40, //defaults the results to 40
 
-            };
+	//PART 1
+	//1. Create an event handler for the "loadBookmarks" form submit event. 
+	$("#loadBookmarks").on("click", function(){
+		var username = $('#sourceUser').val();
+		var urlstring = 'http://feeds.delicious.com/v2/json/' + username;
+		console.log(urlstring);
 
-            $.ajax({
-                //url: 'http://feeds.delicious.com/v2/json/tag/dog', //looks up recent bookmarks with the tag 'dog'
-                url: 'http://feeds.delicious.com/v2/json/recent',
-                data: dataObj,
+		$.ajax({
+                //url: 'http://feeds.delicious.com/v2/json/iolab',
+                url: urlstring,
+                //data: dataObj,
                 dataType: 'jsonp',
             })
-            .done(function(data){
-                //alert("success");
-                var info = data;
+		.done(function(data){
+			console.log("success");
+			var info = data;
                 //console.log(info);
-                for (var i = 0; i < 40; i++) {
-                    var test = info[i];
-                    var div = buildDiv(test.a, test.d, test.u, test.n, test.t);
-                    console.log(test.t);
+                for (var i = 0; i < info.length; i++) {
+                	var test = info[i];
+                	
+                	var url = test.u;
+                	var tag = test.t;
+                	
+                	console.log(url);
+                	console.log(tag);
+                	var div = generateBookmarkListItem(url, tag);
+
                     //console.log(test.t.length);
-                    $('#gallery').append(div);
-                    //console.log(test);
+                    $('#bookmarks').append(div);
+                    console.log(test);
                 }
                 console.log("Done");
             })
-            .fail(function(xhr, e) {
-                console.log(e);
-            });                     
-        
+		.fail(function(xhr, e) {
+			console.log(e);
+		});   
 
-$('#bookmark').on("click", function() {
-    console.log("CLICK!!!");
-    var dataObj = {
-        url: 'http://hotmail.com',
-        description: 'test test test',
-        replace: 'yes', 
-        api_key: API_KEY,
-    };
+		return false;
+	});
 
-    $.ajax({
-        url: 'https://api.delicious.com/v1/posts/add?',
-        data: dataObj,
-        //dataType: 'jsonp',
-    })
-    .done(function(){
-        console.log("success");
-    })
-    .fail(function(){
-        console.log("fail");
-    })
+$("#saveBookmarks > input[type='submit']").on("click", function() {
+	var username = $('#targetUser').val();
+	console.log(username);
+	var password = $('#password').val();
+
+	$("input[type='checkbox']").each(function(){
+		// this code would only include checked lines in the each function
+		//$("input[type='checkbox']:checked").each(function(){ 
+			//console.log("HELLO");
+			if ($(this).is(":checked")) {
+				//console.log("CHECKED!!!!");
+				
+				var link = $(this).siblings().attr("href");
+				//console.log(link);
+				var tags = $(this).parent().siblings().text();
+				//console.log(tags);
+
+				var dataObj = {
+					url : link,
+					//url : 'http://hotmail.com',
+					username : username,
+					password : password,
+				};
+
+				$.ajax({
+                url: 'delicious_proxy.php',
+                //url: 'https://api.delicious.com/v1/posts/add?',
+                type: "POST",
+                data: dataObj,
+                dataType: 'jsonp',
+            })
+				.done(function(data){
+					console.log("PROGRESS!");
+				})
+				.fail(function(xhr,e) {
+					console.log("post fail");
+				});
+
+			} /*else {
+				console.log("Not Checked");
+			}*/
+		});
+
+	//console.log("YO");	
+	return false;
 });
 
-});  // end of document.ready functions         
 
-        //this function is not used yet 
-        function buildLink(farm, server, id, secret) {
-          return 'http://farm' + farm + '.staticflickr.com/' + server + '/' + id + '_' + secret + '.jpg'    
-      }
 
-      function buildDiv(user, title, link, text, tags) {
-           //This replaces any null values with 'N/A'
-          // console.log(tags.length);
-          if (user == '') {
-            user = 'N/A';
-        } 
-        if (title == '') {
-            title = 'N/A';
-        } 
-        if (link == '') {
-            link = 'N/A';
-        } 
-        if (text == '') {
-            text = 'N/A';
-        } 
-        if (tags[0].length == 0) {
-            tags = 'N/A';
-        }
-        console.log(tags[0].length);
 
-        var div = $('<div></div>')
-        .append('<p>' + 'User: ' + user + ' | Title: ' + title + ' | URL: ' + link + ' | Text: ' + text + ' | Tags: ' + tags + '</p>');
-        return div;
-    }
+
+
+	//PART 2
+	//1. Write another form event handler, this time for the "saveBookmarks" form. 
+
+	//2. In the event handler, create an AJAX request to POST each of the checked bookmarks to the second Delicious account
+	//    by way of the the proxy file you uploaded to your ISchool account.
+	//	  You'll need to extract the url and tags back from each bookmark <li>
+	//    Review http://delicious.com/developers to figure out which API method to use and what parameters are required
+
+	//IMPORTANT NOTE: In order to test the request, you will need to Upload the contents of this lab (browser.html, js directory, 
+	//css directory) and run it from the web (ex. http://people.ischool.berkeley.edu/~yourname/browser.html) 
+
+	//PART 3 (Advanced/extra)
+	//1. Edit the HTML of the form and modify your JavaScript code to allow the user to add new tags to the selected bookmarks
+	//
+
+
+	function generateBookmarkListItem(url, tag) {
+		//markObj.u = url
+	    //markObj.t = array of tags
+
+	    var listItem = $('<li><div><input type="checkbox"> <a href="' + url + '">' + url 
+	    	+ '</a></div><span class="tags">' + tag + '</span></li>');
+	    return listItem;
+	    //console.log(listItem);
+	}
+
+
+});

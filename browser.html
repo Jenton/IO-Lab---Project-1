@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <meta charset="utf-8">
+		<title>Delicious Browser</title>
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+        <script src="js/main.js"></script>
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <div id="wrapper">
+            <header>
+            <div id="brand">
+                <h1>
+                  Delicious Browser
+                </h1>
+            </div>
+            </header>
+
+                
+
+            <div id="main">
+                 <h3>Source Account</h3>
+                <form id="loadBookmarks" name="loadBookmarks" method="get">
+                    <p><label>User Name</label> <input type="text" name="user" id="sourceUser" value="iolab"></p>
+                    <input type="submit" value="Get Bookmarks" return="false">
+                </form>
+
+
+                <h3>Bookmarks List</h3>
+                <ul id="bookmarks">
+                </ul>
+
+
+                <h3>Target Account</h3>
+                <form id="saveBookmarks" name="saveBookmarks" method="post">
+                    <p><label>User Name</label> <input type="text" name="user" id="targetUser"></p>
+                    <p><label>Password</label> <input type="password" name="password" id="password"></p>
+                    <input type="submit" value="Post to Delicious">
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
