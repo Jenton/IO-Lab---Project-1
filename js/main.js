@@ -3,35 +3,29 @@ $(document).ready(function() {
 
 	//PART 1
 	//1. Create an event handler for the "loadBookmarks" form submit event. 
-	$("#loadBookmarks").on("click", function(){
+	$("#loadBookmarks").on("submit", function(){
 		var username = $('#sourceUser').val();
 		var urlstring = 'http://feeds.delicious.com/v2/json/' + username;
 		console.log(urlstring);
 
 		$.ajax({
-                //url: 'http://feeds.delicious.com/v2/json/iolab',
                 url: urlstring,
-                //data: dataObj,
                 dataType: 'jsonp',
             })
 		.done(function(data){
 			console.log("success");
-			$('#bookmarks').html("");
+			$('#bookmarks').html(""); // Jenton : refreshes the bookmark lists for each user 
 			var info = data;
-                //console.log(info);
+                
                 for (var i = 0; i < info.length; i++) {
                 	var test = info[i];
                 	
                 	var url = test.u;
                 	var tag = test.t;
                 	
-                	console.log(url);
-                	console.log(tag);
                 	var div = generateBookmarkListItem(url, tag);
-
-                    //console.log(test.t.length);
+                    
                     $('#bookmarks').append(div);
-                    console.log(test);
                 }
                 console.log("Done");
             })
