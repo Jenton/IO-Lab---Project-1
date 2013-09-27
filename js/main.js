@@ -16,6 +16,7 @@ $(document).ready(function() {
             })
 		.done(function(data){
 			console.log("success");
+			$('#bookmarks').html("");
 			var info = data;
                 //console.log(info);
                 for (var i = 0; i < info.length; i++) {
