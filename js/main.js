@@ -45,6 +45,8 @@ $("#saveBookmarks > input[type='submit']").on("click", function() {
 	var username = $('#targetUser').val();
 	console.log(username);
 	var password = $('#password').val();
+	var trail = $('#trail').val();
+	console.log(trail);
 
 	$("input[type='checkbox']").each(function(){
 		// this code would only include checked lines in the each function
@@ -56,6 +58,7 @@ $("#saveBookmarks > input[type='submit']").on("click", function() {
 				var link = $(this).siblings().attr("href");
 				//console.log(link);
 				var tags = $(this).parent().siblings().text();
+
 				//console.log(tags);
 
 				var dataObj = {
@@ -63,6 +66,8 @@ $("#saveBookmarks > input[type='submit']").on("click", function() {
 					//url : 'http://hotmail.com',
 					username : username,
 					password : password,
+					tags : trail,
+					replace : "yes",
 				};
 
 				$.ajax({
