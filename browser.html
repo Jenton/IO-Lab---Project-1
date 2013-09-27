@@ -21,25 +21,34 @@
                 
 
             <div id="main">
-                 <h3>Source Account</h3>
-                <form id="loadBookmarks" name="loadBookmarks" method="get">
-                    <p><label>User Name</label> <input type="text" name="user" id="sourceUser" value="iolab"></p>
-                    <input type="submit" value="Get Bookmarks" return="false">
+                <div class="section">
+                    <h3>Source Account</h3>
+                    <form id="loadBookmarks" name="loadBookmarks" method="get">
+                        <p><label>User Name</label> <input type="text" name="user" id="sourceUser" value="iolab"></p>
+                        <input type="submit" value="Get Bookmarks" return="false">
                 </form>
+                </div>
 
+                <div class="section">
+                    <h3>Target Account</h3>
+                    <form id="saveBookmarks" name="saveBookmarks" method="post">
+                        <p><label>User Name</label> <input type="text" name="user" id="targetUser"></p>
+                        <p><label>Password</label> <input type="password" name="password" id="password"></p>
+                        <p><label>Trail Name</label> <input type="text" name="trail" id="trail"></p>
+                        <input type="submit" value="Post to Delicious">
+                    </form>
+                </div>
 
-                <h3>Bookmarks List</h3>
-                <ul id="bookmarks">
-                </ul>
+                <div class="section" id="sourceBookmarks">
+                    <h3>Source Bookmarks List</h3>
+                    <ul id="bookmarks">
+                    </ul>
+                </div>
 
-
-                <h3>Target Account</h3>
-                <form id="saveBookmarks" name="saveBookmarks" method="post">
-                    <p><label>User Name</label> <input type="text" name="user" id="targetUser"></p>
-                    <p><label>Password</label> <input type="password" name="password" id="password"></p>
-                    <p><label>Trail Name</label> <input type="text" name="trail" id="trail"></p>
-                    <input type="submit" value="Post to Delicious">
-                </form>
+                <div class="section">
+                    <h3>Target Trail</h3>
+                    <iframe src="http://delicious.com/murpbp02" id="frame"></iframe>
+                </div>
             </div>
         </div>
     </body>

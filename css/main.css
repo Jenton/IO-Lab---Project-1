@@ -25,6 +25,10 @@ label {
 	width:100px;
 }
 
+h1 {
+	padding-left:20px;
+}
+
 /*------------------------------------- LAYOUT -------------------------------------------------*/
 #wrapper {
     width:1000px;
@@ -35,6 +39,7 @@ label {
 
 #main {
 	padding:20px;
+	overflow:hidden;
 }
 
 #bookmarks {
@@ -55,4 +60,31 @@ label {
 	margin-left:10px;
 	text-align:right;
 	vertical-align: top;
+}
+
+.section{
+	width:440px;
+	background:#eee;
+	float:left;
+	padding-left:20px;
+	padding-bottom: 20px;
+	margin:10px;
+	-webkit-box-shadow: 1px 1px 1px #ccc;
+	-moz-box-shadow: 1px 1px 1px #ccc;
+	-ms-box-shadow: 1px 1px 1px #ccc;
+	-o-box-shadow: 1px 1px 1px #ccc;
+	-webkit-box-shadow: 1px 1px 1px #ccc;
+}
+
+#sourceUser{
+	margin-bottom: 80px;
+}
+
+#sourceBookmarks{
+	height:1028px;
+}
+
+#frame{
+	width:415px;
+	height:960px;
 }
