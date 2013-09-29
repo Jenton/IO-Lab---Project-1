@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Delicious Browser</title>
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script src="js/main_iolab.js"></script>
+        <link rel="stylesheet" href="css/main_iolab.css">
+    </head><!--End of head-->
+    <body>
+        <div id="wrapper">
+            <header>
+				<div id="brand">
+					<h1>Delicious Browser</h1>
+				</div><!--End of div id="brand"-->
+            </header>
+
+            <div id="main">
+				<!--Source Account Section-->
+                <div class="section" id="sourceAccount">
+                    <h3>Source Account</h3>
+                    <form id="loadBookmarks" name="loadBookmarks" method="get">
+                        <p><label>User Name</label> <input type="text" name="user" id="sourceUser" value="iolab"></p>
+                        <input type="submit" value="Get Bookmarks">
+					</form>
+                </div><!--End of div id="sourceAccount"-->
+
+				<!--Target Account Section-->
+                <div class="section" id="targetAccount">
+                    <h3>Target Account</h3>
+                    <form id="saveBookmarks" name="saveBookmarks" method="post">
+                        <p><label>User Name</label> <input type="text" name="user" id="targetUser" required="required"></p>
+                        <p><label>Password</label> <input type="password" name="password" id="password" required="required"></p>
+                        <p><label>Trail Name</label> <input type="text" name="trail" id="trail" required="required"></p>
+                        <input type="submit" value="Post to Delicious">
+                    </form>
+                </div><!--End of div id="targetAccount"-->
+
+				<!--Source Bookmarks List Section-->
+                <div class="section" id="sourceBookmarks">
+                    <h3>Source Bookmarks List</h3>
+					<div id="tagSelector">
+						<label>Tag List</label><select id="tagSelect"></select>
+					</div><!--End of div id="tagSelector"-->
+                    <ul id="bookmarks"></ul>
+                </div><!--End of div id="sourceBookmarks"-->
+
+				<!--Target Trail Section-->
+                <div class="section" id="targetTrail">
+                    <h3>Target Trail</h3>
+					<ul id="userBookmarks"></ul>
+                    <!--<iframe src="http://delicious.com" id="frame"></iframe>-->
+                </div><!--End of div id="targetTrail"-->
+				
+				<!--Page Viewer Section-->
+				<div class="section" id="viewer">
+                    <h3>Page Viewer</h3>
+                    <iframe src="" id="frameViewer"></iframe>
+                </div><!--End of div id="viewer"-->
+            </div><!--End of div id="main"-->
+        </div><!--End of div id="wrapper"-->
+    </body><!--End of body-->
+</html>
