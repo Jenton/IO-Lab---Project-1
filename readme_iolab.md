@@ -10,5 +10,5 @@ Team members and roles:
 	4. Ajeeta Dhole
 		Role: HTML/CSS
 Technologies used: HTML, CSS, JavaScript, jQuery, jQuery UI
-Link to demo version: 
+Link to demo version: http://people.ischool.berkeley.edu/~jenton/iolab_project1/browser_iolab.html
 Known bugs: 

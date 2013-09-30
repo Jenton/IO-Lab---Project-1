@@ -86,8 +86,32 @@ h1 {
 }
 
 #sourceBookmarks{
-	height:1028px;
-}
+	/* Jenton: Iremoved the height, so now this div will dynamically size based on how many bookmarks it's showing
+	/*height:1028px;*/
+	}
+
+/* Jenton: This fixes the long url text wrapping issue. Code taken from this blog post: http://perishablepress.com/wrapping-content/; */
+#sourceBookmarks a {
+	white-space: pre;           /* CSS 2.0 */
+	white-space: pre-wrap;      /* CSS 2.1 */
+	white-space: pre-line;      /* CSS 3.0 */
+	white-space: -pre-wrap;     /* Opera 4-6 */
+	white-space: -o-pre-wrap;   /* Opera 7 */
+	white-space: -moz-pre-wrap; /* Mozilla */
+	white-space: -hp-pre-wrap;  /* HP Printers */
+	word-wrap: break-word;      /* IE 5+ */ 
+	}
+
+#targetTrail a {
+	white-space: pre;           /* CSS 2.0 */
+	white-space: pre-wrap;      /* CSS 2.1 */
+	white-space: pre-line;      /* CSS 3.0 */
+	white-space: -pre-wrap;     /* Opera 4-6 */
+	white-space: -o-pre-wrap;   /* Opera 7 */
+	white-space: -moz-pre-wrap; /* Mozilla */
+	white-space: -hp-pre-wrap;  /* HP Printers */
+	word-wrap: break-word;      /* IE 5+ */ 
+	}
 
 #frame{
 	width:415px;
