@@ -108,6 +108,7 @@ $(document).ready(function() {
 			trail, 
 			tagList = "", 
 			checkedItems = 0;
+
 			
 		//Capture the delicious username, delicious password and trail name from the 'targetUser', 'password' and 'trail' fields respectively
 		username = targetUser.val();
@@ -119,15 +120,24 @@ $(document).ready(function() {
 			//Check if a 'checkbox' element has been checked or not
 			//If the 'checkbox' element has been checked then proceed
 			if(this.checked){
-				//Capture the 'url' based on the index of the 'checkbox' element. Use the index to lookup the 'url' Array to find the corresponding url
-				link = url[index];
-				//Capture the 'Tags' based on the index of the 'checkbox' element. Use the index to lookup the 'tags' Array to find the corresponding Tag Array.
-				//Combine the Array elements into a String Object.
-				tagList = tags[index].join(",");
+				//Jenton: the <a> tag is a sibling of the checkbox element. I am storing the url from the checked item in the variable 'link'.
+				link = $(this).siblings("a").attr('href');
+				console.log(link);
+				//Post the checked URL to the Delicious account with the Trail Name as the tag.
+				$.post("delicious_proxy.php", {username: username, password: pwd, url: link, tags: trail, replace: "yes"}
+				).always(function() {
+					console.log("Request Complete.");
+				}).done(function(){
+					console.log("URL added to Delicious");
+				}).fail(function(event) {
+					console.log("Error: " + event);
+				});
 				
 				//Increment the Counter for the Number of Checked Items
 				checkedItems++;
-			}
+
+			} 
+
 		});
 		
 		//If the Counter for the Number of Checked Items is still set to 0, inform the user to select a Bookmark before proceeding, ELSE proceed to submit the form
@@ -136,31 +146,13 @@ $(document).ready(function() {
 			alert("Please Select at least 1 bookmark in order to create a Trail");
 			//Prevent Default Action of the 'submit' event
 			return false;
-		}else{
-			//Post the required data Objects to Delicious. The Default Method is 'posts/add'. 
-			//Hence, there is no need to explicitly mention the 'method' property in the data Object.
-			//The callback function updates the iframe with that user's Delicious Trails
-			$.post("delicious_proxy.php", {username: username, password: pwd, url: link, tags: tagList, description: trail, replace: "yes"}
-			).always(function() {
-				console.log("Request Complete.");
-			}).done(function(data){
-					//Create an AJAX request using JSONP to GET all bookmarks for the given user name
-					$.getJSON('http://feeds.delicious.com/v2/json/' + username + '?callback=?'
-					).always(function() {
-						console.log("Request Complete.");
-					}).done(function(data){
-						//Loop through each Object returned from Delicious
-						$(data).each(function() {							
-							userBookmarks.append(generateBookmarkListItem(this));
-						});
-					}).fail(function(event) {
-						console.log("Error: " + event);
-					});
-				console.log("Request Successful.");
-			}).fail(function(event) {
-				console.log("Error: " + event);
-			});
 		}
+
+		//create a url string that points to the user's delicious page
+		var userpage = "http://delicious.com/" + username + "/" + trail;	
+		//update the iFrame to link to the Delicious page for the user specified in the 'username' field. It will link directly to the specified trail name as well.
+		$("#frame").attr("src", userpage);
+
 	});
 	
 	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
