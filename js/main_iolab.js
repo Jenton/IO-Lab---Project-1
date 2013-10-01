@@ -14,8 +14,7 @@ $(document).ready(function() {
 		targetUser = $("#targetUser"),
 		userPassword = $("#password"),
 		trailName = $("#trail"),
-		//frame = $("#frame"),
-		frameViewer = $("#frameViewer"),
+		frame = $("#frame"),
 		userBookmarks = $("#userBookmarks");
 	
 	//Animation to display the body of the page after 500 ms
@@ -173,11 +172,19 @@ $(document).ready(function() {
 		//Clear the contents of the 'bookmarks' unordered list element
 		bookmarks.html("");
 		
+		//Check if the value of the Option element that was seleceted is the Default Option i.e. Choose a Tag.
+		//If a match is found then proceed ELSE check if the value of the Option element that was seleceted matches a Tag Name String in the 'tags' Array.
+		if(selectedItem === "Choose a Tag"){
+				//Loop through each element in each 'objectList' Array
+				objectList.forEach(function(obj){
+					//Invoke the function to generate the List Item Elements for each Object and append the results to the 'bookmarks' unordered list element
+					bookmarks.append(generateBookmarkListItem(obj));
+			});					
+		}else
 		//Loop through each Tag Array element in the 'tags' Array
 		tags.forEach(function(item){
 			//Loop through each element in each Tag Array 
 			item.forEach(function(tagName){
-				//Check if the value of the Option element that was seleceted matches a Tag Name String in the 'tags' Array.
 				//If a match is found then proceed
 				if(tagName === selectedItem){
 					//Invoke the function to generate the List Item Elements for each Object and append the results to the 'bookmarks' unordered list element
@@ -185,16 +192,6 @@ $(document).ready(function() {
 				}
 			});
 		});
-	});
-	
-	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
-	//#4. Event Handler for the 'click' event on the link event source in the 'bookmarks' unordered list element.
-	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
-	bookmarks.on("click", "a", function(event) {
-		//Update the 'src' and 'text' attributes of the 'frameViewer' iFrame with values captured from the link that has been clicked
-		frameViewer.prop("src", $(this).attr("href")).prop("title", $(this).text());
-		//Prevent Default navigation Action
-		return false;
 	});
 	
 	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
