@@ -121,3 +121,16 @@ h1 {
 #tagSelector{
 	display: none;
 }
+
+#dialog {
+	font-size:14px;
+}
+#modalFrame {
+	width: 750px;
+	height: 480px;
+	margin-right:;
+}
+
+.modalForm {
+	width:auto;
+}

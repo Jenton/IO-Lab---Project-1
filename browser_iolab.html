@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Delicious Browser</title>
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
         <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         <script src="js/main_iolab.js"></script>
@@ -15,6 +16,20 @@
 					<h1>Delicious Browser</h1>
 				</div><!--End of div id="brand"-->
             </header>
+
+            <!-- iFrame Modal to display bookmark -->
+            <div id="dialog" title="Add to your Trail">
+                <!-- form to add your username, password, and trail tag -->
+                <form id="saveModal" >
+                <label class="modalForm">User</label>
+                <input type="text" id="modalUser" />
+                <label class="modalForm">Pass</label>
+                <input type="password" id="modalPass" />
+                <label class="modalForm">Trail Name</label>
+                <input type="text" id="modalTrail" />
+                </form>          
+                <iframe id="modalFrame" src="#"></iframe>
+            </div>
 
             <div id="main">
 				<!--Source Account Section-->

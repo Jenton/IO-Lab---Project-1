@@ -187,13 +187,72 @@ $(document).ready(function() {
 	});
 	
 	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
+	//#5. Open up a modal iframe to display the page. Give the option to add that page to your trail
+	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+$( "#dialog" ).dialog({
+      // Jenton: used the jQuery UI dialog api
+      autoOpen: false,
+      width: 800,
+      height: 500,
+      draggable: false,
+      buttons: {
+      	//Jenton: the post button on the modal
+      	"Post to Delicious": function() {
+      		// Jenton: I'm just duplicating the same post method as above. Probably not very efficient
+      		var user = $("#modalUser").val();
+			var pass = $("#modalPass").val();
+			var trail = $("#modalTrail").val();
+			$.post("delicious_proxy.php", {username: user, password: pass, url: $("#modalFrame").attr("src"), tags: trail, replace: "yes"}
+				).always(function() {
+					console.log("Request Complete.");
+				}).done(function(){
+					console.log("URL added to Delicious");
+				}).fail(function(event) {
+					console.log("Error: " + event);
+				});
+			//create a url string that points to the user's delicious page
+			var userpage = "http://delicious.com/" + user + "/" + trail;	
+			//After posting, update the iFrame to link to the Delicious page for the user specified in the 'username' field. It will link directly to the specified trail name as well.
+			$("#frame").attr("src", userpage);
+      			$(this).dialog("close");
+      		},
+      	//Jenton: the cancel button on the modal
+      	Cancel: function() {
+      		$(this).dialog("close");	
+      	}
+      },
+      show: {
+        effect: "slide",
+        direction: "up",
+        duration: 1000,
+
+      },
+      hide: {
+        effect: "slide",
+        direction: "up",
+        duration: 1000
+      }
+    });
+ 
+ 	//Jenton: the on and the ".opener" code allows me to bind listeners onto the user bookmark urls that we generate after the DOM is built.
+    $( "body" ).on("click", ".opener", function() {
+      //Jenton: This changes the iFrame to the url of the bookmark
+      $("#dialog").children().attr("src", $(this).text());
+      //Jenton: This opens the modal
+      $( "#dialog" ).dialog( "open" );
+    });
+
+
+	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
 	//Function to generate List Item elements of the 'bookmarks' Unordered List Element.
 	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
 	function generateBookmarkListItem(markObj) {
 		// markObj.u = url
 	    // markObj.t = array of tags
 		//Create List Item elements using information from the Object passed in as an argument to the funtion
-	    var listItem = $('<li><div><input type="checkbox"> <a href="' + markObj.u + '" target="frameViewer">' + markObj.u 
+		// Jenton: the href="javascript:;" ensures that clicking the link won't do anything. This is so the modal can fire."
+	    var listItem = $('<li><div><input type="checkbox"> <a class="opener" href="javascript:;">' + markObj.u 
 	    	+ '</a></div><span class="tags">' + markObj.t + '</span></li>');
 		//Return the generated List Item element
 	    return listItem;
