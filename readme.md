@@ -1,11 +1,14 @@
-<h3>Delicious Browser Lab</h3>
-<p>Practice AJAX requests with the Delicious API</p>
-
-<h4>Instructions</h4>
-
-
-<h6>Step 1. Upload Proxy File</h6>
-Launch your FTP client and connect to your ISchool webspace, then copy the delicious_proxy.php file to the /public_html folder
-
-<h6>Step 2. Implement Delicious Browser</h6>
-Follow the instructions in js/main.js.
+Project title: IO Lab - Project 1 - The Merry Memex Maker 
+Project description: Our version of the memex allows a user to look through the bookmarks of other Delicious users and add those bookmarks into his own trail. Their trail is visualized as an chronologically ordered list of links in another frame.
+Team members and roles: 
+	1. Ashley DeSouza
+		Role: JavaScript and jQuery
+	2. Jenton Lee
+		Role: API setup and jQuery
+	3. Brian Murphy
+		Role: HTML/CSS
+	4. Ajeeta Dhole
+		Role: HTML/CSS
+Technologies used: HTML, CSS, JavaScript, jQuery, jQuery UI
+Link to demo version: http://people.ischool.berkeley.edu/~jenton/iolab_project1/browser_iolab.html
+Known bugs: 
