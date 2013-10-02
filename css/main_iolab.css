@@ -88,7 +88,12 @@ h1 {
 #sourceBookmarks{
 	/* Jenton: Iremoved the height, so now this div will dynamically size based on how many bookmarks it's showing
 	/*height:1028px;*/
+	min-height: 600px;
 	}
+
+#targetTrail {
+	height: 600px;
+}
 
 /* Jenton: This fixes the long url text wrapping issue. Code taken from this blog post: http://perishablepress.com/wrapping-content/; */
 #sourceBookmarks a {
@@ -115,7 +120,7 @@ h1 {
 
 #frame{
 	width:415px;
-	height:960px;
+	height:540px;
 }
 
 #tagSelector{
