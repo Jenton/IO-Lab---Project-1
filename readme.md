@@ -2,20 +2,14 @@
 <h2>Project description:</h2>
 <p>Our version of the memex allows a user to look through the bookmarks of other Delicious users and add those bookmarks into his own trail. Their trail is visualized as an chronologically ordered list of links in another frame.</p>
 <h2>Team members and roles:</h2> 
-	<p><ol>
-	<li>Ashley DeSouza
-		<p>Role: JavaScript and jQuery</p>
-	</li>
-	<li>Jenton Lee
-		<p>Role: API setup and jQuery</p>
-	</li>
-	<li>Brian Murphy
-		<p>Role: HTML/CSS</p>
-	</li>
-	<li>Ajeeta Dhole
-		<p>Role: HTML/CSS</p>
-	</li>
-	</ol></p>
+<h3>Ashley DeSouza</h3>
+<p>Role: JavaScript and jQuery</p>
+<h3>Jenton Lee</h3>
+<p>Role: API setup and jQuery</p>
+<h3>Brian Murphy</h3>
+<p>Role: HTML/CSS</p>
+<h3>Ajeeta Dhole</h3>
+<p>Role: HTML/CSS</p>
 <h2>Technologies used:</h2>
 <p>HTML, CSS, JavaScript, jQuery, jQuery UI</p>
 <h2>Link to demo version:</h2>
