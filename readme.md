@@ -1,6 +1,6 @@
-Project title: IO Lab - Project 1 - The Merry Memex Maker 
-Project description: Our version of the memex allows a user to look through the bookmarks of other Delicious users and add those bookmarks into his own trail. Their trail is visualized as an chronologically ordered list of links in another frame.
-Team members and roles: 
+<h1>Project title: IO Lab - Project 1 - The Merry Memex Maker </h6>
+<p>Project description: Our version of the memex allows a user to look through the bookmarks of other Delicious users and add those bookmarks into his own trail. Their trail is visualized as an chronologically ordered list of links in another frame.</p>
+<h2>Team members and roles:</h2> 
 	1. Ashley DeSouza
 		Role: JavaScript and jQuery
 	2. Jenton Lee
